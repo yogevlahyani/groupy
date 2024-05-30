@@ -1,6 +1,4 @@
 {
-  "display": "React Chrome Extension",
-  "extends": "./base.json",
   "compilerOptions": {
     "target": "es5",
     "lib": [
