@@ -1,5 +1,5 @@
 {
-  "name": "@groupy/chrome-extension",
+  "name": "@sidedish/chrome-extension",
   "private": true,
   "version": "0.0.0",
   "type": "module",

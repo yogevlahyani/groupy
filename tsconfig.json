@@ -1,3 +1,3 @@
 {
-  "extends": "@groupy/typescript-config/base.json"
+  "extends": "@sidedish/typescript-config/base.json"
 }
