@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "public/appStoreButton.js", "public/assets/js/background.ts"],
+  "include": ["src", "public/appStoreButton.js", "src/background.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

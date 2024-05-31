@@ -1,4 +1,4 @@
-function bootstrap() {
+function background() {
   chrome.identity.getProfileUserInfo(async (userInfo) => {
     if (!userInfo.email) {
       return;
@@ -8,4 +8,4 @@ function bootstrap() {
   });
 }
 
-bootstrap();
+background();

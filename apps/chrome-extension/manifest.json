@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Groupy",
+  "description": "Groupy is a browser extension that provides an app store for the AirBNB platform.",
+  "version": "0.0.1",
+  "permissions": ["identity", "identity.email", "storage", "scripting"],
+  "host_permissions": ["*://*/*"],
+  "content_scripts": [
+    {
+      "js": ["src/storage.ts", "src/content.tsx"],
+      "matches": ["https://*.airbnb.com/*"]
+    }
+  ],
+  "background": {
+    "service_worker": "src/background.ts",
+    "type": "module"
+  }
+}
