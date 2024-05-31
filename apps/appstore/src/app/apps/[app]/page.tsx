@@ -1,6 +1,8 @@
-import { mockAppsData } from "@appstore/mockData";
+'use client';
+
 import Link from "next/link";
 import { RxCaretLeft } from "react-icons/rx";
+import { mockAppsData } from "@appstore/mockAppsData";
 
 const getApp = async (appId: string) => {
   return mockAppsData.find((app) => app.id === appId);
@@ -8,14 +10,26 @@ const getApp = async (appId: string) => {
 
 interface AppPageProps {
   params: { app: string };
+  searchParams?: Record<string, string>;
 }
 
-export default async function AppPage({ params }: AppPageProps) {
+export default async function AppPage({ params, searchParams }: AppPageProps) {
   const app = await getApp(params.app);
+  const email = searchParams?.email;
 
-  if (!app) {
+  if (!app || !email) {
     return <div>App not found</div>;
   }
+
+  const installApp = async () => {
+    await fetch(`/api/installs?email=${email}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ appId: app.id }),
+    });
+  };
 
   return (
     <>
@@ -27,10 +41,10 @@ export default async function AppPage({ params }: AppPageProps) {
       </nav>
       <div className="flex flex-row gap-16 p-5 -mt-24 px-28">
         <div className="flex-1 flex flex-col items-center justify-center gap-10">
-          <div className="flex bg-gray-200 rounded-lg w-96 h-96 items-center justify-center">
+          <div className="flex bg-gray-200 rounded-lg w-full h-full items-center justify-center">
             <img src={app.icon} alt={app.name} />
           </div>
-          <button className="flex w-full py-3 items-center justify-center text-sm font-medium text-center text-white bg-orange-700 rounded-lg hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800 cursor-pointer">
+          <button onClick={installApp} className="w-full py-3 items-center justify-center text-sm font-medium text-center text-white bg-orange-700 rounded-lg hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800 cursor-pointer">
             Install
           </button>
           <div className="w-full">

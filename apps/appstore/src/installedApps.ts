@@ -1,0 +1,1 @@
+export const installedApps = new Map<string, Set<string>>();

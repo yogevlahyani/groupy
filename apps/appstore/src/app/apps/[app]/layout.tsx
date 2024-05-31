@@ -1,8 +1,7 @@
-import type { Metadata, ResolvingMetadata } from "next";
+import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../../globals.css";
-import { useParams } from "next/navigation";
-import { mockAppsData } from "@appstore/mockData";
+import { mockAppsData } from "@appstore/mockAppsData";
 
 type Props = {
   params: { app: string }
@@ -10,8 +9,7 @@ type Props = {
 }
 
 export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: ResolvingMetadata
+  { params }: Props,
 ): Promise<Metadata> {
   // read route params
   const id = params.app
